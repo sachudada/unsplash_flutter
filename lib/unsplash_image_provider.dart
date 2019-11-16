@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:unsplash_flutter/keys.dart';
 import 'package:unsplash_flutter/models.dart';
+//import 'package:flutter_downloader/flutter_downloader.dart';
 
 /// Helper class to interact with the Unsplash Api and provide [UnsplashImage].
 class UnsplashImageProvider {

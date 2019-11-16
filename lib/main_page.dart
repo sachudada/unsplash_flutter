@@ -7,6 +7,7 @@ import 'package:unsplash_flutter/models.dart';
 import 'package:unsplash_flutter/widget/image_tile.dart';
 import 'package:unsplash_flutter/widget/loading_indicator.dart';
 
+
 /// Screen for showing a collection of trending [UnsplashImage].
 class MainPage extends StatefulWidget {
   @override
@@ -14,7 +15,8 @@ class MainPage extends StatefulWidget {
 }
 
 /// Provide a state for [MainPage].
-class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin{
+class _MainPageState extends
+State<MainPage> with SingleTickerProviderStateMixin{
   var btnVisibility = 1.0;
 
 
@@ -28,7 +30,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     _loadImages();
 
     _controller = new AnimationController(
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 100),
       vsync: this,
     )..repeat(reverse: true);
 
@@ -87,7 +89,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     }
     // set loading state
     // delay setState, otherwise: Unhandled Exception: setState() or markNeedsBuild() called during build.
-    await Future.delayed(Duration(microseconds: 1));
+    await Future.delayed(Duration(microseconds: 0));
     setState(() {
       // set loading
       loadingImages = true;

@@ -70,11 +70,11 @@ class _ImagePageState extends State<ImagePage> {
       // open in browser icon button
       IconButton(
           icon: Icon(
-            Icons.open_in_browser,
+            Icons.file_download,
             color: Colors.white,
           ),
-          tooltip: 'Open in Browser',
-          onPressed: () => launch(image?.getHtmlLink())),
+          tooltip: 'Download',
+          onPressed: () => launch (image?. getDownloadLink())),
     ],
   );
 

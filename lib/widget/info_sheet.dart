@@ -150,6 +150,7 @@ class InfoSheet extends StatelessWidget {
                   _buildExifInfoItem('${exif.getExposureTime()}'),
                   _buildExifInfoItem('${exif.getFocalLength()}mm'),
                   _buildExifInfoItem('ISO${exif.getIso()}'),
+                  _buildExifInfoItem('${exif.getModel()}')
                 ],
               ),
             ],
