@@ -60,7 +60,7 @@ class UnsplashImageProvider {
     HttpClientRequest request = await httpClient.getUrl(Uri.parse(url));
     // pass the client_id in the header
     request.headers
-        .add('Authorization', 'Client-ID ${keys.UNSPLASH_API}');
+        .add('Authorization', 'Client-ID ${Keys.unsplashApi}');
 
     // wait for response
     HttpClientResponse response = await request.close();
