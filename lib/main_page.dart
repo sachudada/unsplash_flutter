@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:unsplash_flutter/ui/Global%20Variables/globals.dart';
 import 'package:unsplash_flutter/unsplash_image_provider.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:unsplash_flutter/models.dart';
@@ -12,7 +14,32 @@ class MainPage extends StatefulWidget {
 }
 
 /// Provide a state for [MainPage].
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin{
+  var btnVisibility = 1.0;
+
+
+  Icon icon = Icon(FontAwesomeIcons.solidSun);
+
+  AnimationController _controller;
+  @override
+  initState() {
+    super.initState();
+    isDarkTheme = false;
+    _loadImages();
+
+    _controller = new AnimationController(
+      duration: const Duration(milliseconds: 1000),
+      vsync: this,
+    )..repeat(reverse: true);
+
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   /// Stores the current page index for the api requests.
   int page = 0, totalPages = -1;
 
@@ -25,12 +52,12 @@ class _MainPageState extends State<MainPage> {
   /// Stored the currently searched keyword.
   String keyword;
 
-  @override
-  initState() {
-    super.initState();
-    // initial image Request
-    _loadImages();
-  }
+//  @override
+//  initState() async {
+//    super.initState();
+//    // initial image Request
+//    _loadImages();
+//  }
 
   /// Resets the state to the inital state.
   _resetImages() {
@@ -114,6 +141,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) => WillPopScope(
+
     onWillPop: () async {
       if (keyword != null) {
         _resetImages();
@@ -122,12 +150,12 @@ class _MainPageState extends State<MainPage> {
       return true;
     },
     child: Scaffold(
-        backgroundColor: Colors.grey[50],
+        backgroundColor:Theme.of(context).primaryColor,
         body: OrientationBuilder(
             builder: (context, orientation) => CustomScrollView(
               // put AppBar in NestedScrollView to have it sliver off on scrolling
                 slivers: <Widget>[
-                  _buildSearchAppBar(),
+                 // _buildSearchAppBar(),
                   _buildImageGrid(orientation: orientation),
                   // loading indicator at the bottom of the list
                   loadingImages
@@ -140,42 +168,42 @@ class _MainPageState extends State<MainPage> {
   );
 
   /// Returns the SearchAppBar.
-  Widget _buildSearchAppBar() => SliverAppBar(
-    title: keyword != null
-        ?
-    // either search-field or just the title
-    TextField(
-      keyboardType: TextInputType.text,
-      decoration: InputDecoration(
-          hintText: 'Search...', border: InputBorder.none),
-      onSubmitted: (String keyword) =>
-      // search and display images associated to the keyword
-      _loadImages(keyword: keyword),
-      autofocus: true,
-    )
-        : const Text('Flutter Unsplash',
-        style: TextStyle(color: Colors.black87)),
-    actions: <Widget>[
-      // either search oder clear button
-      keyword != null
-          ? IconButton(
-        icon: Icon(Icons.clear),
-        color: Colors.black87,
-        onPressed: () {
-          // reset the state
-          _resetImages();
-        },
-      )
-          : IconButton(
-        icon: Icon(Icons.search),
-        color: Colors.black87,
-        onPressed: () =>
-        // go into searching state
-        setState(() => keyword = ""),
-      )
-    ],
-    backgroundColor: Colors.grey[50],
-  );
+//  Widget _buildSearchAppBar() => SliverAppBar(
+//    title: keyword != null
+//        ?
+//    // either search-field or just the title
+//    TextField(
+//      keyboardType: TextInputType.text,
+//      decoration: InputDecoration(
+//          hintText: 'Search...', border: InputBorder.none),
+//      onSubmitted: (String keyword) =>
+//      // search and display images associated to the keyword
+//      _loadImages(keyword: keyword),
+//      autofocus: true,
+//    )
+//        : const Text('Flutter Unsplash',
+//        style: TextStyle(color: Colors.black87)),
+//    actions: <Widget>[
+//      // either search oder clear button
+//      keyword != null
+//          ? IconButton(
+//        icon: Icon(Icons.clear),
+//        color: Colors.black87,
+//        onPressed: () {
+//          // reset the state
+//          _resetImages();
+//        },
+//      )
+//          : IconButton(
+//        icon: Icon(Icons.search),
+//        color: Colors.black87,
+//        onPressed: () =>
+//        // go into searching state
+//        setState(() => keyword = ""),
+//      )
+//    ],
+//    backgroundColor: Colors.grey[50],
+//  );
 
   /// Returns a StaggeredTile for a given [image].
   StaggeredTile _buildStaggeredTile(UnsplashImage image, int columnCount) {
