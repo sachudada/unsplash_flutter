@@ -92,7 +92,7 @@ class _SplashState extends State<Splash> {
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 24.0,
-                        fontWeight: FontWeight.w500),
+                        fontWeight: FontWeight.w500,),
                   ),
                   TyperAnimatedTextKit(
                     duration: Duration(

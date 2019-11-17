@@ -32,7 +32,8 @@ import 'package:get_version/get_version.dart';
 import 'package:unsplash_flutter/ui/Utilities/my_theme_keys.dart';
 import 'package:unsplash_flutter/ui/Utilities/shared_preference_handler.dart';
 import 'package:unsplash_flutter/ui/Utilities/theme_handler.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'dart:async';
 
 import 'main_page.dart';
 import 'ui/constants.dart';
@@ -94,7 +95,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pixcy',
       debugShowCheckedModeBanner: false,
-      theme: CustomTheme.of(context),
+      theme: ThemeData(fontFamily: 'GoogleSans'),
+      //theme: CustomTheme.of(context),
       home: Splash(),
     );
   }

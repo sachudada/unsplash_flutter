@@ -152,7 +152,8 @@ State<MainPage> with SingleTickerProviderStateMixin{
       return true;
     },
     child: Scaffold(
-        backgroundColor:Theme.of(context).primaryColor,
+      backgroundColor: Colors.white,
+        //backgroundColor:Theme.of(context).primaryColor,
         body: OrientationBuilder(
             builder: (context, orientation) => CustomScrollView(
               // put AppBar in NestedScrollView to have it sliver off on scrolling
