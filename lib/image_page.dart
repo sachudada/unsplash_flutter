@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:unsplash_flutter/models.dart';
 import 'package:unsplash_flutter/widget/info_sheet.dart';
@@ -70,10 +71,10 @@ class _ImagePageState extends State<ImagePage> {
       // open in browser icon button
       IconButton(
           icon: Icon(
-            Icons.file_download,
+            Icons.open_in_browser,
             color: Colors.white,
           ),
-          tooltip: 'Download',
+          tooltip: 'open in browser',
           onPressed: () => launch (image?. getDownloadLink())),
     ],
   );
@@ -92,10 +93,19 @@ class _ImagePageState extends State<ImagePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+
+    return Scaffold(  floatingActionButton: FloatingActionButton.extended(
+      onPressed: () {
+
+        // Add your onPressed code here!
+      },
+      label: Text('Download',style: TextStyle(color: Colors.white,),),
+      icon: Icon(FontAwesomeIcons.download,color: Colors.white,),
+      backgroundColor: Colors.pink,
+    ),
       // set the global key
       key: _scaffoldKey,
-      backgroundColor: Colors.black,
+     // backgroundColor: Colors.black,
       body: Stack(
         children: <Widget>[
           _buildPhotoView(widget.imageId, widget.imageUrl),

@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:unsplash_flutter/main_page.dart';
 import '../../main_page.dart';
 
 class DrawerMenu extends StatefulWidget {
@@ -153,6 +153,8 @@ class _DrawerMenuState extends State<DrawerMenu> {
     }
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     getTheme();
@@ -165,7 +167,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
       appBar: AppBarProps(
           automaticallyImplyLeading: true,
           primary: true,
-          backgroundColor: Theme.of(context).primaryColorDark,
+          backgroundColor: Theme.of(context).primaryColor,
           elevation: 1.0,
           centerTitle: true,
           title: Text('Pixcy Wallpaper',
@@ -182,6 +184,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 icon: icon,
                 onPressed: () {
                   setState(() {
+
                     if (isDarkTheme) {
                       isDarkTheme = false;
                       isSwitched = false;

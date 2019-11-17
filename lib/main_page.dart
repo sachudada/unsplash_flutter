@@ -152,7 +152,7 @@ State<MainPage> with SingleTickerProviderStateMixin{
       return true;
     },
     child: Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).primaryColor,
         //backgroundColor:Theme.of(context).primaryColor,
         body: OrientationBuilder(
             builder: (context, orientation) => CustomScrollView(

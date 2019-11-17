@@ -95,7 +95,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pixcy',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'GoogleSans'),
+      //theme: ThemeData(fontFamily: 'GoogleSans'),
+      theme: ThemeData(fontFamily: 'GoogleSans',
+        brightness: Brightness.light,
+        primaryColor: Colors.white,
+      ),
+      darkTheme: ThemeData(
+        fontFamily: 'GoogleSans',
+        /*For Automatic brightness/Theme of App */
+        brightness: Brightness.dark,
+        primaryColor: Colors.black,
+        // primaryColor: Color.fromRGBO(48, 48, 48,1),
+      ),
       //theme: CustomTheme.of(context),
       home: Splash(),
     );
