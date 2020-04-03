@@ -55,7 +55,7 @@ class _ImagePageState extends State<ImagePage> {
     IconButton(
         icon: Icon(
           Icons.arrow_back,
-          color: Colors.white,
+          color: Colors.deepOrange,
         ),
         onPressed: () => Navigator.pop(context)),
     actions: <Widget>[
@@ -63,7 +63,7 @@ class _ImagePageState extends State<ImagePage> {
       IconButton(
           icon: Icon(
             Icons.info_outline,
-            color: Colors.white,
+            color: Colors.deepPurple,
 
           ),
           tooltip: 'Image Info',
@@ -72,7 +72,7 @@ class _ImagePageState extends State<ImagePage> {
       IconButton(
           icon: Icon(
             Icons.open_in_browser,
-            color: Colors.white,
+            color: Colors.deepPurpleAccent,
           ),
           tooltip: 'open in browser',
           onPressed: () => launch (image?. getDownloadLink())),
@@ -96,6 +96,7 @@ class _ImagePageState extends State<ImagePage> {
 
     return Scaffold(  floatingActionButton: FloatingActionButton.extended(
       onPressed: () {
+        launch(image?.getDownloadLink());
 
         // Add your onPressed code here!
       },
