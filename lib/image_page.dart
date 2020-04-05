@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:unsplash_flutter/models.dart';
 import 'package:unsplash_flutter/widget/info_sheet.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:unsplash_flutter/unsplash_image_provider.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+
 
 /// Screen for showing an individual [UnsplashImage].
 class ImagePage extends StatefulWidget {
@@ -93,19 +95,37 @@ class _ImagePageState extends State<ImagePage> {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      floatingActionButton: SpeedDial(
+        animatedIcon: AnimatedIcons.menu_arrow,
+        children: [
+          SpeedDialChild(
+            child: Icon(Icons.file_download),
+            label: "720p",
+            onTap: () => launch(image?.getDownloadLink())),
+            //print("HD!")),
 
-    return Scaffold(  floatingActionButton: FloatingActionButton.extended(
-      onPressed: () {
-        launch(image?.getDownloadLink());
+          SpeedDialChild(
+            child: Icon(Icons.file_download),
+            label: "Full HD",
+            onTap: () => launch(image?.getRawUrl())
+    //print("Full HD!"))
+          )],
+      ),
+
+
+//    return Scaffold(  floatingActionButton: FloatingActionButton.extended(
+//      onPressed: () {
+//        launch(image?.getDownloadLink());
 
         // Add your onPressed code here!
-      },
-      label: Text('Download',style: TextStyle(color: Colors.white,),),
-      icon: Icon(FontAwesomeIcons.download,color: Colors.white,),
-      backgroundColor: Colors.pink,
-    ),
+//      },
+//      label: Text('Download',style: TextStyle(color: Colors.white,),),
+//      icon: Icon(FontAwesomeIcons.download,color: Colors.white,),
+//      backgroundColor: Colors.pink,
+//    ),
       // set the global key
-      key: _scaffoldKey,
+//      key: _scaffoldKey,
      // backgroundColor: Colors.black,
       body: Stack(
         children: <Widget>[
