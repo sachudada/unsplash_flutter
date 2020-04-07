@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:photo_view/photo_view.dart';
@@ -6,6 +7,12 @@ import 'package:unsplash_flutter/widget/info_sheet.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:unsplash_flutter/unsplash_image_provider.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:http/http.dart' as http;
+//import 'package:image_picker_saver/image_picker_saver.dart';
+import 'package:image_downloader/image_downloader.dart';
+import 'dart:async';
+import 'dart:io';
+import 'package:flutter/services.dart';
 
 
 /// Screen for showing an individual [UnsplashImage].
@@ -15,7 +22,7 @@ class ImagePage extends StatefulWidget {
   ImagePage(this.imageId, this.imageUrl, {Key key}) : super(key: key);
 
   @override
-  _ImagePageState createState() => _ImagePageState();
+    _ImagePageState createState() => _ImagePageState();
 }
 
 /// Provide a state for [ImagePage].
@@ -36,6 +43,10 @@ class _ImagePageState extends State<ImagePage> {
     _loadImage();
   }
 
+  var filePath;
+  // ignore: non_constant_identifier_names
+  String Pixcy_images ;
+
   /// Reloads the image from unsplash to get extra data, like: exif, location, ...
   _loadImage() async {
     UnsplashImage image = await UnsplashImageProvider.loadImage(widget.imageId);
@@ -43,7 +54,7 @@ class _ImagePageState extends State<ImagePage> {
       this.image = image;
       // reload bottom sheet if open
       if (bottomSheetController != null) {
-        _showInfoBottomSheet();
+       // _showInfoBottomSheet();
       }
     });
   }
@@ -62,14 +73,15 @@ class _ImagePageState extends State<ImagePage> {
         onPressed: () => Navigator.pop(context)),
     actions: <Widget>[
       // show image info
-      IconButton(
-          icon: Icon(
-            Icons.info_outline,
-            color: Colors.deepOrange,
+     // IconButton
+  //(
+          //icon: Icon(
+          //  Icons.info_outline,
+         //   color: Colors.deepOrange,
 
-          ),
-          tooltip: 'Image Info',
-          onPressed: () => bottomSheetController = _showInfoBottomSheet()),
+       //   ),
+         // tooltip: 'Image Info',
+         // onPressed: () => bottomSheetController = _showInfoBottomSheet()),
       // open in browser icon button
       IconButton(
           icon: Icon(
@@ -97,36 +109,30 @@ class _ImagePageState extends State<ImagePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: SpeedDial(
-        animatedIcon: AnimatedIcons.menu_arrow,
+        animatedIcon: AnimatedIcons.menu_close,
+        backgroundColor: Colors.green,
+        onOpen: () => print("Opening"),
+        onClose: () => print("Closing"),
+        overlayColor: Colors.transparent,
+        //curve: Curves.easeInOutSine,
         children: [
           SpeedDialChild(
             child: Icon(Icons.file_download),
-            label: "720p",
-            onTap: () => launch(image?.getDownloadLink())),
+            backgroundColor: Colors.deepPurpleAccent,
+            label: "HD",
+            labelBackgroundColor: Colors.deepPurpleAccent,
+            onTap: () => launch(image?.getRegularUrl())),
             //print("HD!")),
 
           SpeedDialChild(
             child: Icon(Icons.file_download),
             label: "Full HD",
-            onTap: () => launch(image?.getRawUrl())
+            labelBackgroundColor: Colors.amber,
+            onTap: () => launch(image?.getDownloadLink())
     //print("Full HD!"))
           )],
       ),
 
-
-//    return Scaffold(  floatingActionButton: FloatingActionButton.extended(
-//      onPressed: () {
-//        launch(image?.getDownloadLink());
-
-        // Add your onPressed code here!
-//      },
-//      label: Text('Download',style: TextStyle(color: Colors.white,),),
-//      icon: Icon(FontAwesomeIcons.download,color: Colors.white,),
-//      backgroundColor: Colors.pink,
-//    ),
-      // set the global key
-//      key: _scaffoldKey,
-     // backgroundColor: Colors.black,
       body: Stack(
         children: <Widget>[
           _buildPhotoView(widget.imageId, widget.imageUrl),
@@ -137,10 +143,40 @@ class _ImagePageState extends State<ImagePage> {
     );
   }
 
-  /// Shows a BottomSheet containing image info.
-  PersistentBottomSheetController _showInfoBottomSheet() {
-    return _scaffoldKey.currentState.showBottomSheet(
-          (context) => InfoSheet(image),
-    );
+
+
+  //Download
+
+  void _onTap() async {
+    print("Image download button pressed");
+    var response = await http.get(_loadImage());
+    //var response = await http.get(image?.getDownloadLink());
+    //filePath = await  ImagePickerSaver.saveFile(fileData: response.bodyBytes);
   }
+
+
+
+
+
+  /// Shows a BottomSheet containing image info.
+  //PersistentBottomSheetController _showInfoBottomSheet() {
+    //return _scaffoldKey.currentState.showBottomSheet(
+     //     (context) => InfoSheet(image),
+    //);
+ // }
 }
+
+
+//    return Scaffold(  floatingActionButton: FloatingActionButton.extended(
+//      onPressed: () {
+//        launch(image?.getDownloadLink());
+
+// Add your onPressed code here!
+//      },
+//      label: Text('Download',style: TextStyle(color: Colors.white,),),
+//      icon: Icon(FontAwesomeIcons.download,color: Colors.white,),
+//      backgroundColor: Colors.pink,
+//    ),
+// set the global key
+//      key: _scaffoldKey,
+// backgroundColor: Colors.black,

@@ -12,6 +12,7 @@ class UnsplashImage {
     return data['id'];
   }
 
+
   String createdAt() {
     return data['created_at'];
   }
@@ -91,6 +92,7 @@ class UnsplashImage {
   getLinks() {
     return data['links'];
   }
+
 
   String getSelfLink() {
     return getLinks()['self'];

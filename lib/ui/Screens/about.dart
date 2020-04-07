@@ -76,7 +76,7 @@ class AboutUS extends StatelessWidget {
                       width: 30.0,
                     ),
                     Text(
-                      " Pixcy.",
+                      " GOOGLE.",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18.0,

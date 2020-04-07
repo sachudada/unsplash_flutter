@@ -1,6 +1,6 @@
 import 'package:unsplash_flutter/ui/Global%20Variables/globals.dart';
 import 'package:unsplash_flutter/ui/Screens/about.dart';
-import 'package:unsplash_flutter/ui/Screens/bmi_main.dart';
+//import 'package:unsplash_flutter/ui/Screens/bmi_main.dart';
 import 'package:unsplash_flutter/ui/Screens/settings.dart';
 import 'package:unsplash_flutter/ui/Utilities/app_util.dart';
 import 'package:unsplash_flutter/ui/Utilities/my_theme_keys.dart';
@@ -15,6 +15,7 @@ import 'package:launch_review/launch_review.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:unsplash_flutter/main_page.dart';
 import '../../main_page.dart';
+
 
 class DrawerMenu extends StatefulWidget {
   @override
@@ -104,19 +105,19 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 "Built with  ",
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 10.0,
+                    fontSize: 15.0,
                     fontWeight: FontWeight.w600),
               ),
               Icon(
                 FontAwesomeIcons.solidHeart,
                 color: Colors.red,
-                size: 10,
+                size: 20,
               ),
               Text(
-                "  By",
+                "  by",
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 10.0,
+                    fontSize: 15.0,
                     fontWeight: FontWeight.w600),
               )
             ],
@@ -167,49 +168,54 @@ class _DrawerMenuState extends State<DrawerMenu> {
       appBar: AppBarProps(
           automaticallyImplyLeading: true,
           primary: true,
-          backgroundColor: Theme.of(context).primaryColor,
+         backgroundColor: Colors.deepPurpleAccent,
+         // backgroundColor: Theme.of(context).primaryColor,
           elevation: 1.0,
           centerTitle: true,
           title: Text('Pixcy Wallpaper',
               textDirection: TextDirection.ltr,
               style: TextStyle(
-                  color: Theme.of(context).accentColor,
+                color: Colors.white,
+                  //color: Theme.of(context).accentColor,
                   fontSize: 16.0,
                   fontWeight: FontWeight.w900)),
-          actions: <Widget>[
-            Container(
-              padding: EdgeInsets.fromLTRB(0.0, 0.0, 15.0, 0.0),
-              height: MediaQuery.of(context).size.height,
-              child: IconButton(
-                icon: icon,
-                onPressed: () {
-                  setState(() {
+          actions: <Widget>
+          [
+            //Container(
+              //padding: EdgeInsets.fromLTRB(0.0, 0.0, 15.0, 0.0),
+              //height: MediaQuery.of(context).size.height,
+              //child: IconButton(
+              //  icon: icon,
+                //onPressed: ()
+                //{
+                  //setState(() {
 
-                    if (isDarkTheme) {
-                      isDarkTheme = false;
-                      isSwitched = false;
-                      themeLabel = "Light Mode";
-                      icon = Icon(FontAwesomeIcons.solidMoon,
-                          color: Colors.black38);
-                      _changeTheme(context, MyThemeKeys.LIGHT);
-                      SharedPreference.setStringValue(
-                          SharedPreference.selectedTheme,
-                          MyThemeKeys.LIGHT.toString());
-                    } else {
-                      isDarkTheme = true;
-                      isSwitched = true;
-                      themeLabel = "Dark Mode";
-                      icon = Icon(FontAwesomeIcons.solidSun);
-                      _changeTheme(context, MyThemeKeys.DARKER);
-                      SharedPreference.setStringValue(
-                          SharedPreference.selectedTheme,
-                          MyThemeKeys.DARKER.toString());
-                    }
-                  });
-                },
-              ),
-            )
-          ]),
+                    //if (isDarkTheme) {
+                      //isDarkTheme = false;
+                      //isSwitched = false;
+                     // themeLabel = "Light Mode";
+                     // icon = Icon(FontAwesomeIcons.solidMoon,
+                  //        color: Colors.black38);
+                  //    _changeTheme(context, MyThemeKeys.LIGHT);
+                  //    SharedPreference.setStringValue(
+                  //        SharedPreference.selectedTheme,
+                  //        MyThemeKeys.LIGHT.toString());
+                  //  } else {
+                  //    isDarkTheme = true;
+                  //    isSwitched = true;
+                   //   themeLabel = "Dark Mode";
+                   //   icon = Icon(FontAwesomeIcons.solidSun);
+                   //   _changeTheme(context, MyThemeKeys.DARKER);
+                    //  SharedPreference.setStringValue(
+                    //      SharedPreference.selectedTheme,
+                    //     MyThemeKeys.DARKER.toString());
+                    //}
+                  //});
+                //},
+            //  ),
+           // )
+          ]
+      ),
       menuView: new MenuView(
         menu: menu,
         headerView: headerView(context),
@@ -223,7 +229,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
             fit: BoxFit.cover),
         selectorColor: Color.fromRGBO(67, 193, 152, 1),
         textStyle: TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 17.0, color: Colors.white70),
+            fontWeight: FontWeight.bold, fontSize: 20.9, color: Colors.white),
         selectedItemId: selectedMenuItemId,
         onMenuItemSelected: (String itemId) {
           selectedMenuItemId = itemId;
